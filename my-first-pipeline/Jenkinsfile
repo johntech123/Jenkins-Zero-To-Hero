@@ -1,5 +1,14 @@
 pipeline {
     agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout code from a Git repository
+              git branch: 'main', url: 'https://github.com/johntech123/Jenkins-Zero-To-Hero  
+            }
+        }
+        
         stage('Build') {
             steps {
                 // Run a build command
@@ -32,3 +41,4 @@ pipeline {
         }
     }
 }
+           
