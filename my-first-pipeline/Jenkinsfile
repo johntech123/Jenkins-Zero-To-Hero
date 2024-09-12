@@ -1,12 +1,34 @@
 pipeline {
-  agent {
-    docker { image 'node:16-alpine' }
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    agent any
+        stage('Build') {
+            steps {
+                // Run a build command
+                sh 'echo Building...'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Run a test command
+                sh 'echo Testing...'
+            }
+        }
     }
-  }
+
+    post {
+        always {
+            // Clean up workspace after build
+            cleanWs()
+        }
+        
+        success {
+            // Actions if the build is successful
+            echo 'Build and tests succeeded!'
+        }
+        
+        failure {
+            // Actions if the build fails
+            echo 'Build or tests failed.'
+        }
+    }
 }
